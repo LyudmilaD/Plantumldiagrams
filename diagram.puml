@@ -1,0 +1,147 @@
+@startuml namespace
+
+<style>
+    activitydDiagram {
+    BorderColor black
+    FontColor black
+    FontName arial
+    FontSize 17
+
+activity {
+    BackgroundColor #BFD3C1 
+    }
+diamond {
+    BackgroundColor #68A691      
+    FontColor black
+    FontName arial
+    FontSize 17
+    }
+arrow {
+    FontColor black
+    FontName arial
+    FontSize 17
+    }
+partition {
+    LineColor #68A691
+    FontColor black
+    RoundCorner 20
+    BackgroundColor Peachpuff
+    }
+note {
+    FontColor black
+    LineColor #694F5D
+    BackgroundColor FFF5D4   
+    }
+fork {
+    BackgroundColor black
+    }   
+}
+document {
+     BackgroundColor white
+}
+</style>
+
+|User|
+start
+#68A691:opens 'Training epam.com';
+:selects 'Ukraine' location';
+note right 
+    Also user can selects appropriate **skills** and //types//
+    ====
+    These filters are not required
+end note
+:selects a course;
+:press 'Register' button;
+|Epam|
+if (user is signed in?) then (yes)
+else (no)
+if (is user registered?) then (yes)
+:signs in;
+note left
+    |User can sign in using__Google, LinkedIn__| 
+end note
+else (no)
+|Epam|
+
+partition #e2fcfa/white "Regisration" {
+:opens a 'Registration' page;
+|User|
+:fills in profile information;
+:presses 'Sign up' button;
+|Epam|
+:sends a confirmation email;
+|User|
+:confirms a email;
+|Epam|
+fork
+:creates a User profile;
+:signs the User in;
+fork again
+:sends a greeting email;
+end fork
+}
+endif;
+endif;
+|Epam|
+:shows a Basic info from;
+|User|
+:fills in Basic information;
+note left
+    This includes required fields such as:
+    ___**First, last name, email, etc.**___ 
+end note
+:presses 'Next' button;
+|Epam|
+:cheks answers validity;
+note right
+    If user did not enter all required fields, system 
+    shows **'This field is required'
+    will not open the next page **until all fields
+end note
+:opens an 'Education' page;
+|User|
+:fills in Education information;
+|User|
+:presses 'Next' button;
+|Epam|
+:checks answers validity;
+:shows a 'Register' button;
+|User|
+:presses 'Register' button;
+|Epam|
+partition #f3e2fc/white "**Application process**" {
+:processes in application;
+fork
+:shows confirmation pop-up;
+fork again
+:sends confirmation to the email;
+end merge;
+}
+|User|
+note left
+    Sees a confifmation pop-up&
+    receives a cinfirmation email.
+end note
+
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
